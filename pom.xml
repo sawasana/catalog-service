@@ -55,6 +55,13 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
             <version>3.2.2</version>
         </dependency>
+        <!--
+        https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+            <version>4.1.0</version>
+        </dependency>
 
 
     </dependencies>
