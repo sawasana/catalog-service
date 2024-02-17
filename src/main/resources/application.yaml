@@ -24,6 +24,9 @@ spring:
         max-interval: 2000
         multiplier: 1.1
 
+  profiles:
+    active: testdata
+
   datasource:
     username: admin
     password: admin123
@@ -31,9 +34,7 @@ spring:
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
-  sql:
-    init:
-      mode: always
+
 polar:
   greeting: Welcome to the local book catalog!
 

@@ -11,7 +11,7 @@ import com.polarbookshop.catalogservice.domain.Book;
 import com.polarbookshop.catalogservice.domain.BookRepository;
 
 @Component
-@Profile("testData")
+@Profile("testdata")
 public class BookDataLoader {
     private final BookRepository bookRepository;
 

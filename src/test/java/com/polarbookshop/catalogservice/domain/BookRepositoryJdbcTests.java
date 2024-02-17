@@ -1,6 +1,8 @@
 package com.polarbookshop.catalogservice.domain;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import com.polarbookshop.catalogservice.config.DataConfig;
 import org.junit.jupiter.api.Test;
@@ -18,13 +20,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Import(DataConfig.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("integration")
-
 public class BookRepositoryJdbcTests {
     @Autowired
     private BookRepository bookRepository;
 
     @Autowired
     private JdbcAggregateTemplate jdbcAggregateTemplate;
+
+    @Test
+    void findAllBooks() {
+        var book1 = Book.of("1234561235", "Title", "Author", 12.90);
+        var book2 = Book.of("1234561236", "Another Title", "Author", 12.90);
+        jdbcAggregateTemplate.insert(book1);
+        jdbcAggregateTemplate.insert(book2);
+
+        Iterable<Book> actualBooks = bookRepository.findAll();
+
+        assertThat(StreamSupport.stream(actualBooks.spliterator(), true)
+                .filter(book -> book.isbn().equals(book1.isbn()) || book.isbn().equals(book2.isbn()))
+                .collect(Collectors.toList())).hasSize(2);
+    }
 
     @Test
     void findBookByIsbnWhenExisting() {
