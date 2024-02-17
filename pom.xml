@@ -10,7 +10,7 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.polarbookshop</groupId>
-    <artifactId>polarbookshop</artifactId>
+    <artifactId>catalog-service</artifactId>
     <version>v1</version>
     <name>taco</name>
     <description>Demo project for Spring Boot</description>
