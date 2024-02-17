@@ -30,15 +30,70 @@ public class InMemoryBookRepository implements BookRepository {
         return books.get(isbn) != null;
     }
 
-    @Override
-    public Book save(Book book) {
-        books.put(book.isbn(), book);
-        return book;
-    }
+    // @Override
+    // public Book save(Book book) {
+    // books.put(book.isbn(), book);
+    // return book;
+    // }
 
     @Override
     public void deleteByIsbn(String isbn) {
         books.remove(isbn);
+    }
+
+    @Override
+    public long count() {
+        throw new UnsupportedOperationException("Unimplemented method 'count'");
+    }
+
+    @Override
+    public void delete(Book entity) {
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public void deleteAll() {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Book> entities) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends Long> ids) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteAllById'");
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+    }
+
+    @Override
+    public Iterable<Book> findAllById(Iterable<Long> ids) {
+        throw new UnsupportedOperationException("Unimplemented method 'findAllById'");
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public <S extends Book> Iterable<S> saveAll(Iterable<S> entities) {
+        throw new UnsupportedOperationException("Unimplemented method 'saveAll'");
+    }
+
+    @Override
+    public <S extends Book> S save(S entity) {
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
 }
