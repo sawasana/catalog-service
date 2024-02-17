@@ -29,8 +29,8 @@ public class BookRepositoryJdbcTests {
 
     @Test
     void findAllBooks() {
-        var book1 = Book.of("1234561235", "Title", "Author", 12.90);
-        var book2 = Book.of("1234561236", "Another Title", "Author", 12.90);
+        var book1 = Book.of("1234561235", "Title", "Author", 12.90, "Alma Mata");
+        var book2 = Book.of("1234561236", "Another Title", "Author", 12.90, "Alma Mata");
         jdbcAggregateTemplate.insert(book1);
         jdbcAggregateTemplate.insert(book2);
 
@@ -44,7 +44,7 @@ public class BookRepositoryJdbcTests {
     @Test
     void findBookByIsbnWhenExisting() {
         var isbn = "1234561237";
-        var book = Book.of(isbn, "Title", "Author", 12.90);
+        var book = Book.of(isbn, "Title", "Author", 12.90, "Alma Mata");
         jdbcAggregateTemplate.insert(book);
 
         Optional<Book> actualBook = bookRepository.findByIsbn(isbn);
