@@ -30,11 +30,12 @@ public class InMemoryBookRepository implements BookRepository {
         return books.get(isbn) != null;
     }
 
-    // @Override
-    // public Book save(Book book) {
-    // books.put(book.isbn(), book);
-    // return book;
-    // }
+    @SuppressWarnings("unchecked")
+    @Override
+    public Book save(Book book) {
+        books.put(book.isbn(), book);
+        return book;
+    }
 
     @Override
     public void deleteByIsbn(String isbn) {
@@ -89,11 +90,6 @@ public class InMemoryBookRepository implements BookRepository {
     @Override
     public <S extends Book> Iterable<S> saveAll(Iterable<S> entities) {
         throw new UnsupportedOperationException("Unimplemented method 'saveAll'");
-    }
-
-    @Override
-    public <S extends Book> S save(S entity) {
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
 }

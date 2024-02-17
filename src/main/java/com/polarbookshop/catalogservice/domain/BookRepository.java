@@ -14,6 +14,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     boolean existsByIsbn(String isbn);
 
+    // @SuppressWarnings("unchecked")
     // Book save(Book book);
 
     @Modifying
