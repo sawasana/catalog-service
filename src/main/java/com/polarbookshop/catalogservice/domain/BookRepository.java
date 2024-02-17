@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
-    Iterable<Book> findAll();
 
     Optional<Book> findByIsbn(String isbn);
 
