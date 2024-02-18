@@ -12,7 +12,7 @@
     <groupId>com.polarbookshop</groupId>
     <artifactId>catalog-service</artifactId>
     <version>v1</version>
-    <name>taco</name>
+    <name>catalog-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>
