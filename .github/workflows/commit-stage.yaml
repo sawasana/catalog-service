@@ -2,7 +2,7 @@ name: Commit Stage
 on: push
 
 env:
-  REGISTRY: ghrc.io
+  REGISTRY: https://ghrc.io
   IMAGE_NAME: sawasana/catalog-service
   VERSION: latest
 
