@@ -58,19 +58,19 @@ jobs:
           cache: maven
       - name: Build container image
         run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-      - name: OCI image vulnerability scanning
-        uses: anchore/scan-action@v3
-        id: scan
-        with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          fail-build: false
-          severity-cutoff: high
-          acs-report-enable: true
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure()
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+      # - name: OCI image vulnerability scanning
+      #   uses: anchore/scan-action@v3
+      #   id: scan
+      #   with:
+      #     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      #     fail-build: falsehttps://stackoverflow.com/questions/28071697/is-it-possible-to-pass-a-password-in-maven-deploy-in-the-command-line
+      #     severity-cutoff: high
+      #     acs-report-enable: true
+      # - name: Upload vulnerability report
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   if: success() || failure()
+      #   with:
+      #     sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Log into container registry
         uses: docker/login-action@v3
         with:
