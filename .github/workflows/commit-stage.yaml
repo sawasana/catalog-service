@@ -47,37 +47,50 @@ jobs:
       contents: read
       packages: write
       security-events: write
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-          cache: maven
-      - name: Build container image
-        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-        # run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/sawasana/catalog-service:${{ env.VERSION }} -Dpassword=${{ secrets.GITHUB_TOKEN }} -Dusername=sawasana
+    # steps:
+    #   - name: Checkout source code
+    #     uses: actions/checkout@v4
+    #   - name: Set up JDK
+    #     uses: actions/setup-java@v4
+    #     with:
+    #       distribution: temurin
+    #       java-version: 21
+    #       cache: maven
+    #   - name: Build container image
+    #     run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+    #     # run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/sawasana/catalog-service:${{ env.VERSION }} -Dpassword=${{ secrets.GITHUB_TOKEN }} -Dusername=sawasana
 
-      # - name: OCI image vulnerability scanning
-      #   uses: anchore/scan-action@v3
-      #   id: scan
-      #   with:
-      #     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-      #     fail-build: false
-      #     severity-cutoff: high
-      #     acs-report-enable: true
-      # - name: Upload vulnerability report
-      #   uses: github/codeql-action/upload-sarif@v3
-      #   if: success() || failure()
-      #   with:
-      #     sarif_file: ${{ steps.scan.outputs.sarif }}
-      - name: Log into container registry
-        uses: docker/login-action@v3
+    #   # - name: OCI image vulnerability scanning
+    #   #   uses: anchore/scan-action@v3
+    #   #   id: scan
+    #   #   with:
+    #   #     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+    #   #     fail-build: false
+    #   #     severity-cutoff: high
+    #   #     acs-report-enable: true
+    #   # - name: Upload vulnerability report
+    #   #   uses: github/codeql-action/upload-sarif@v3
+    #   #   if: success() || failure()
+    #   #   with:
+    #   #     sarif_file: ${{ steps.scan.outputs.sarif }}
+    #   - name: Log into container registry
+    #     uses: docker/login-action@v3
+    #     with:
+    #       registry: ${{ env.REGISTRY }}
+    #       username: ${{ github.actor }}
+    #       password: ${{ secrets.GITHUB_TOKEN }}
+    #   - name: Publish container image
+    #     run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish container image
-        run: docker push https://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Build the Docker image
+        run: |
+          ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
