@@ -57,8 +57,8 @@ jobs:
           java-version: 21
           cache: maven
       - name: Build container image
-        # run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} -Dpassword=${{ secrets.GITHUB_TOKEN }} -Dusername=sawasana
-        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/sawasana/catalog-service:${{ env.VERSION }} -Dpassword=${{ secrets.GITHUB_TOKEN }} -Dusername=sawasana
+        run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        # run: ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/sawasana/catalog-service:${{ env.VERSION }} -Dpassword=${{ secrets.GITHUB_TOKEN }} -Dusername=sawasana
 
       # - name: OCI image vulnerability scanning
       #   uses: anchore/scan-action@v3

@@ -16,9 +16,9 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>
-        <username />
+        <!-- <username />
         <registry />
-        <password />
+        <password /> -->
     </properties>
     <dependencies>
         <dependency>
@@ -136,7 +136,7 @@
                     </statelessTestsetInfoReporter>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -155,7 +155,7 @@
                         </publishRegistry>
                     </docker>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
 
     </build>
