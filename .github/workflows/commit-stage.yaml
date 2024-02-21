@@ -5,7 +5,6 @@ env:
   REGISTRY: ghrc.io
   IMAGE_NAME: sawasana/catalog-service
   VERSION: latest
-  REGISTRY_HOST: https://ghcr.io
 
 jobs:
   build:
@@ -74,12 +73,17 @@ jobs:
       #   if: success() || failure()
       #   with:
       #     sarif_file: ${{ steps.scan.outputs.sarif }}
-      - name: Log into container registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY_HOST }}
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish container image
-        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      # - name: Publish container image
+      #   run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Publish container image (latest)
+        run: |
+          docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
