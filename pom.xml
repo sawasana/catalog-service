@@ -136,12 +136,12 @@
                     </statelessTestsetInfoReporter>
                 </configuration>
             </plugin>
-            <!-- <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${registry}/${username}/${project.artifactId}:latest</name>
+                        <name>ghcr.io/sawasana/catalog-service:latest</name>
                         <publish>true</publish>
                         <env>
                             <BP_JVM_VERSION>21</BP_JVM_VERSION>
@@ -149,13 +149,13 @@
                     </image>
                     <docker>
                         <publishRegistry>
-                            <username>${username}</username>
-                            <password>${password}</password>
-                            <url>https://${registry}</url>
+                            <username>sawasana</username>
+                            <password>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</password>
+                            <url>https://ghcr.io</url>
                         </publishRegistry>
                     </docker>
                 </configuration>
-            </plugin> -->
+            </plugin>
         </plugins>
 
     </build>
