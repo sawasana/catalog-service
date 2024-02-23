@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <version>3.2.3</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.polarbookshop</groupId>
@@ -24,7 +24,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,18 +39,15 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -66,22 +62,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
-            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.1</version>
+            <version>42.7.2</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-            <version>1.19.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -136,26 +129,26 @@
                     </statelessTestsetInfoReporter>
                 </configuration>
             </plugin>
-            <!-- <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>ghcr.io/sawasana/catalog-service:latest</name>
-                        <publish>true</publish>
+                        <name>catalog-service:latest</name>
+                        <!-- <publish>true</publish> -->
                         <env>
                             <BP_JVM_VERSION>21</BP_JVM_VERSION>
                         </env>
                     </image>
-                    <docker>
+                    <!-- <docker>
                         <publishRegistry>
                             <username>sawasana</username>
                             <password>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</password>
                             <url>https://ghcr.io</url>
                         </publishRegistry>
-                    </docker>
+                    </docker> -->
                 </configuration>
-            </plugin> -->
+            </plugin>
         </plugins>
 
     </build>
