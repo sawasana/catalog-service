@@ -106,10 +106,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <dependencies>
@@ -134,7 +130,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>catalog-service:latest</name>
+                        <!-- <name>catalog-service:latest</name> -->
                         <!-- <publish>true</publish> -->
                         <env>
                             <BP_JVM_VERSION>21</BP_JVM_VERSION>
